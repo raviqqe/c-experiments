@@ -12,6 +12,8 @@ rule benchmark
 
 build bin/direct_calls: binary direct_calls.c
 build bin/indirect_calls: binary indirect_calls.c
+build bin/global_variables: binary global_variables.c
+build bin/return_struct: binary return_struct.c
 
 build direct_calls.ll: llvm direct_calls.c
 build indirect_calls.ll: llvm indirect_calls.c
@@ -21,3 +23,5 @@ build indirect_calls.s: assembly indirect_calls.c
 
 build benchmark_direct_calls: benchmark bin/direct_calls
 build benchmark_indirect_calls: benchmark bin/indirect_calls
+build benchmark_global_variables: benchmark bin/global_variables
+build benchmark_return_struct: benchmark bin/return_struct
