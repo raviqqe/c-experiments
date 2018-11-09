@@ -1,13 +1,17 @@
 rule cc
   command = clang -O0 -Wall -o $out $in
 
+rule llvm
+  command = clang -O0 -emit-llvm -S $in
+
 rule benchmark
   command = time $in
 
 build bin/direct_calls: cc direct_calls.c
 build bin/indirect_calls: cc indirect_calls.c
 
+build direct_calls.ll: llvm direct_calls.c
+build indirect_calls.ll: llvm indirect_calls.c
+
 build benchmark_direct_calls: benchmark bin/direct_calls
 build benchmark_indirect_calls: benchmark bin/indirect_calls
-
-default benchmark_direct_calls benchmark_indirect_calls
